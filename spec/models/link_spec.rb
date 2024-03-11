@@ -39,6 +39,16 @@ RSpec.describe Link, type: :model do
     expect(link2.valid?).to be(false)
   end
 
+  it 'generate a Link with a unique lookup code' do
+    url = "https://www.favoriatewebiste.com/articles/how-to-cook"
+    shortener = Shortener.new(url)
+    link = shortener.generate_short_link
+    expect(link.valid?).to be(true)
+
+    link2 = shortener.generate_short_link
+    expect(link2.valid?).to be(true)
+  end
+
 end
 
 
