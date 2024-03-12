@@ -50,6 +50,7 @@ group :development, :test do
 
   # Run against this stable release
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'rubocop', require: false
 end
 
 group :development do

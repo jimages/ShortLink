@@ -11,11 +11,9 @@ class Shortener
   end
 
   def lookup_code
-    i = 0
     loop do
-      code = get_refresh_code(i)
+      code = get_refresh_code
       break code unless link_model.exists?(lookup_code: code)
-      i += 1
     end
   end
 
@@ -24,8 +22,8 @@ class Shortener
   end
 
   private
-  def get_refresh_code(iterator)
-    Digest::SHA256.hexdigest(url)[iterator..(iterator + 6)]
+  def get_refresh_code
+    SecureRandom.uuid[0..6]
   end
 
 end
